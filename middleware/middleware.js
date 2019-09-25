@@ -1,5 +1,15 @@
 const cors = require('cors')
+const bodyParser = require('body-parser');
+const path = require('path')
+const express = require('express')
+module.exports = function (app) {
+    app.set('view engine', 'ejs');
+    app.set('views', 'views');
 
-module.exports = function () {
-    console.log('hey')
+    app.use(cors());
+    app.use(bodyParser.urlencoded({
+        extended: false
+    }));
+    app.use(bodyParser.json());
+    app.use(express.static(path.join(__dirname, 'public')));
 }

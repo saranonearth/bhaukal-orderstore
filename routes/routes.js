@@ -24,5 +24,10 @@ module.exports = function (app) {
     res.render('checkOrder');
   });
 
+  //contact
+  app.get('/contact', (req, res) => {
+    res.render('contact');
+  });
+
 
 };

@@ -23,18 +23,57 @@
             </div>
         </nav>
         <div class="container">
-            <div id="fh5co-intro">
+            <div id="fh5co-intro bt-m">
                 <div class="row animate-box">
                     <div class="col-md-8 col-md-offset-2 col-md-pull-2">
                         <h2>Order Details</h2>
-                        <p><a href="/">Go Home</a></p>
+
                     </div>
                 </div>
+
+            </div>
+            <div class="c-container">
+                <form action="/order" method="POST">
+                    <div class="formItem">
+                        <label for="name">Name</label><br>
+                        <input type="text" name="name">
+                    </div>
+                    <div class="formItem">
+                        <label for="name">Size</label><br>
+                        <select name="size">
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                        </select>
+                    </div>
+                    <div class="formItem">
+                        <label for="phoneNo">Phone No</label><br>
+                        <input type="text" name="phone" maxlength="10">
+                    </div>
+                    <div class="formItem">
+                        <label for="email">Email</label><br>
+                        <input type="text" name="email">
+                    </div>
+                    <div class="formItem">
+                        <label for="hostel">Hostel</label><br>
+                        <input type="text" name="hostel">
+                    </div>
+                    <div class="formItem">
+                        <label for="roomNo">Room No</label><br>
+                        <input type="text" name="roomNo">
+                    </div>
+                    <div class="formItem">
+                        <label for="amount">Total</label><br>
+                        <input type="text" value="300" name="amount" readonly>
+                    </div>
+                    <div class="button">
+                        <button class="checkout" type="submit">Checkout</button>
+                    </div>
+                </form>
             </div>
 
-        </div>
 
 
 
-
-        <%- include('./Includes/bottom.ejs') %>
+            <%- include('./Includes/bottom.ejs') %>

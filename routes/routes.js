@@ -41,8 +41,8 @@ module.exports = function (app) {
   //payment gateway
 
   //POST checkout
-  app.post('/checkout', (req, res) => {
-
+  app.post('/order', (req, res) => {
+    console.log(req.body)
     const {
       email,
       phone,
@@ -50,7 +50,7 @@ module.exports = function (app) {
       amount
     } = req.body
     const custID = name + shortid.generate();
-    const orderID = shortid.generate() = shortid.generate();
+    const orderID = shortid.generate();
     var params = {};
     params['MID'] = process.env.MID;
     params['WEBSITE'] = 'WEBSTAGING';

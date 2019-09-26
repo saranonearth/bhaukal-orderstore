@@ -1,7 +1,6 @@
 <%- include('./Includes/head.ejs') %>
 
 <body>
-
     <div class="fh5co-loader"></div>
     <div id="page">
         <nav class="fh5co-nav" role="navigation">
@@ -9,7 +8,9 @@
                 <div class="top-menu">
                     <div class="row">
                         <div class="col-sm-2">
-                            <div id="fh5co-logo"><a href="/">Bhaukal <span class="sub">Store</span></a></div>
+                            <div id="fh5co-logo">
+                                <a href="/">Bhaukal <span class="sub">Store</span></a>
+                            </div>
                         </div>
                         <div class="col-sm-10 text-right menu-1">
                             <ul>
@@ -23,12 +24,11 @@
             </div>
         </nav>
         <div class="container">
-
             <div class="product">
                 <div class="holder">
                     <div class="img">
                         <div class="img">
-                            <img src="/img/img1.jpg" alt="">
+                            <img src="/img/img1.jpg" alt="" />
                         </div>
                         <div class="slider"></div>
                     </div>
@@ -41,16 +41,9 @@
                             </div>
                         </div>
                         <div class="order-details">
-                            <form action="/checkout" method="POST">
+                            <h2>Rs.300</h2>
+                            <form action="/checkout" method="GET">
 
-                                <!-- <div class="size">
-                                    <select name="size">
-                                        <option value="S">S</option>
-                                        <option value="M">M</option>
-                                        <option value="L">L</option>
-                                        <option value="XL">XL</option>
-                                    </select>
-                                </div> -->
 
                                 <div class="button">
                                     <button class="buyButton" type="submit">Buy Now</button>
@@ -58,16 +51,18 @@
                             </form>
                         </div>
                         <div class="details">
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error vitae incidunt, explicabo
-                                quo veniam unde, consectetur corporis architecto sapiente eligendi, iure repellat!
-                                Cupiditate tempore sit rem pariatur alias facilis unde?</p>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error
+                                vitae incidunt, explicabo quo veniam unde, consectetur corporis
+                                architecto sapiente eligendi, iure repellat! Cupiditate tempore
+                                sit rem pariatur alias facilis unde?
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-
-
-
         <%- include('./Includes/bottom.ejs') %>
+    </div>
+</body>

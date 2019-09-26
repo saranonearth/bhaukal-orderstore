@@ -1401,6 +1401,33 @@ select {
 
 }
 
+input {
+  width: 300px;
+}
+
+.bt-m {
+  margin-bottom: 10px;
+}
+
+.checkout {
+  background: #000;
+  padding: 20px 30px;
+  color: white;
+  border: none;
+  margin-top: 20px;
+  width: 300px;
+}
+
+label {
+  margin-top: 20px;
+}
+
+.c-container {
+  width: 70%;
+  margin: 0;
+  margin-left: 20px;
+}
+
 .product {
 
   margin: center;

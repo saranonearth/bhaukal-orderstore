@@ -1435,6 +1435,12 @@ input {
   width: 300px;
 }
 
+.con {
+  text-align: center;
+  width: 80%;
+  margin: auto;
+}
+
 label {
   margin-top: 20px;
 }

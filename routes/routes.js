@@ -1,9 +1,10 @@
 const checksum_lib = require('../utils/checksum');
 const shortid = require('shortid')
-
+const Product = require('../model/Product');
+const Order = require('../model/Order');
 module.exports = function (app) {
   //home page
-  app.get('/', (req, res) => {
+  app.get('/', async (req, res) => {
     res.render('index');
   });
 
@@ -13,7 +14,7 @@ module.exports = function (app) {
   });
 
   //order placed 
-  app.get('/orderplaced/:id', (req, res) => {
+  app.get('/orderplaced', (req, res) => {
     res.render('orderPlaced');
   });
 
@@ -35,13 +36,20 @@ module.exports = function (app) {
   //order checkout
   app.get('/checkout', (req, res) => {
     res.render('checkout');
-  });
+  })
 
-
+  app.get('/product', async (res, req) => {
+    try {
+      const product = await Product.find({})
+      res.status(200).json(product)
+    } catch (error) {
+      console.log(error)
+    }
+  })
   //payment gateway
 
   //POST checkout
-  app.post('/order', (req, res) => {
+  app.post('/order', async (req, res) => {
     console.log(req.body)
     const {
       email,
@@ -53,48 +61,112 @@ module.exports = function (app) {
       size
     } = req.body
 
-    const custID = name + shortid.generate();
-    const orderID = shortid.generate();
-    var params = {};
-    params['MID'] = process.env.MID;
-    params['WEBSITE'] = 'WEBSTAGING';
-    params['CHANNEL_ID'] = 'WEB';
-    params['INDUSTRY_TYPE_ID'] = 'Retail';
-    params['ORDER_ID'] = orderID + new Date().getTime();
-    params['CUST_ID'] = custID;
-    params['TXN_AMOUNT'] = amount;
-    params['CALLBACK_URL'] = process.env.CALLBACKURL;
-    params['EMAIL'] = email;
-    params['MOBILE_NO'] = phone;
+    try {
+      const custID = name + shortid.generate();
+      const orderID = shortid.generate();
+      const newOrder = await new Order({
+        name,
+        phone,
+        hostel,
+        roomNo,
+        email,
+        size,
+        orderId: orderID,
+        custId: custID,
+        productName: 'Engineering Things | Black Solid T-Shirt',
+        product: '5d9039571c9d440000bdac44',
+      })
+      await newOrder.save();
 
-    checksum_lib.genchecksum(params, process.env.PKEY, function (err, checksum) {
+      var params = {};
+      params['MID'] = process.env.MID;
+      params['WEBSITE'] = 'WEBSTAGING';
+      params['CHANNEL_ID'] = 'WEB';
+      params['INDUSTRY_TYPE_ID'] = 'Retail';
+      params['ORDER_ID'] = orderID + new Date().getTime();
+      params['CUST_ID'] = custID;
+      params['TXN_AMOUNT'] = amount;
+      params['CALLBACK_URL'] = process.env.CALLBACKURL;
+      params['EMAIL'] = email;
+      params['MOBILE_NO'] = phone;
 
-      var txn_url = "https://securegw-stage.paytm.in/theia/processTransaction";
+      checksum_lib.genchecksum(params, process.env.PKEY, async function (err, checksum) {
+        if (err) console.log('paytm', err)
 
-      // var txn_url = "https://securegw.paytm.in/theia/processTransaction"; // for production
 
-      var form_fields = "";
-      for (var x in params) {
-        form_fields += "<input type='hidden' name='" + x + "' value='" + params[x] + "' >";
-      }
-      form_fields += "<input type='hidden' name='CHECKSUMHASH' value='" + checksum + "' >";
+        var txn_url = "https://securegw-stage.paytm.in/theia/processTransaction";
 
-      res.writeHead(200, {
-        'Content-Type': 'text/html'
+        // var txn_url = "https://securegw.paytm.in/theia/processTransaction"; // for production
+
+        var form_fields = "";
+        for (var x in params) {
+          form_fields += "<input type='hidden' name='" + x + "' value='" + params[x] + "' >";
+        }
+
+        newOrder.checkhash = checksum;
+        await newOrder.save();
+        form_fields += "<input type='hidden' name='CHECKSUMHASH' value='" + checksum + "' >";
+
+        res.writeHead(200, {
+          'Content-Type': 'text/html'
+        });
+        res.write('<html><head><title>Merchant Checkout Page</title></head><body><center><h1>Please do not refresh this page...</h1></center><form method="post" action="' + txn_url + '" name="f1">' + form_fields + '</form><script type="text/javascript">document.f1.submit();</script></body></html>');
+        res.end();
       });
-      res.write('<html><head><title>Merchant Checkout Page</title></head><body><center><h1>Please do not refresh this page...</h1></center><form method="post" action="' + txn_url + '" name="f1">' + form_fields + '</form><script type="text/javascript">document.f1.submit();</script></body></html>');
-      res.end();
-    });
+    } catch (error) {
+      console.log(error)
+    }
   })
 
 
 
   // Callback 
 
-  app.post('/callback', (req, res) => {
-    console.log(req.body);
+  app.post('/callback', async (req, res) => {
+    console.log('callback', req.body);
+    const orderid = req.body.ORDERID.substring(0, 9);
+    const {
+      ORDERID,
+      TXNID,
+      TXNAMOUNT,
+      STATUS,
+      RESPMSG,
+      PAYMENTMODE,
+      TXNDATE,
+      GATEWAYNAME,
+      BANKTXNID,
+      BANKNAME
+    } = req.body;
 
-    res.render('index')
+
+    const check = checksum_lib.verifychecksum(req.body, process.env.PKEY, req.body.CHECKSUMHASH);
+    if (check) {
+      try {
+
+        const order = await Order.findOne({
+          orderId: orderid
+        }).exec()
+
+        order.orderId = ORDERID;
+        order.trasactionId = TXNID;
+        order.amount = TXNAMOUNT;
+        order.status = STATUS;
+        order.resMsg = RESPMSG;
+        order.paymentMode = PAYMENTMODE;
+        order.transactionDate = TXNDATE;
+        order.gatewayCode = GATEWAYNAME;
+        order.bankTXNID = BANKTXNID;
+        order.bankName = BANKNAME;
+
+        await order.save()
+        console.log('order', order)
+
+        return res.render('orderPlaced', order)
+      } catch (error) {
+        console.log(error)
+      }
+    } else {
+      console.log('error')
+    }
   })
-
 };

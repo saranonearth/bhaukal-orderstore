@@ -47,8 +47,12 @@ module.exports = function (app) {
       email,
       phone,
       name,
-      amount
+      amount,
+      hostel,
+      roomNo,
+      size
     } = req.body
+
     const custID = name + shortid.generate();
     const orderID = shortid.generate();
     var params = {};
@@ -56,12 +60,13 @@ module.exports = function (app) {
     params['WEBSITE'] = 'WEBSTAGING';
     params['CHANNEL_ID'] = 'WEB';
     params['INDUSTRY_TYPE_ID'] = 'Retail';
-    params['ORDER_ID'] = orderID;
+    params['ORDER_ID'] = orderID + new Date().getTime();
     params['CUST_ID'] = custID;
     params['TXN_AMOUNT'] = amount;
     params['CALLBACK_URL'] = process.env.CALLBACKURL;
     params['EMAIL'] = email;
     params['MOBILE_NO'] = phone;
+
     checksum_lib.genchecksum(params, process.env.PKEY, function (err, checksum) {
 
       var txn_url = "https://securegw-stage.paytm.in/theia/processTransaction";

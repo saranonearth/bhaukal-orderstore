@@ -15,6 +15,7 @@ const orderSchema = new Schema({
     bankTXNID: String,
     bankName: String,
     productName: String,
+    responseMessage: String,
     product: {
         type: Schema.Types.ObjectId,
         ref: 'product'

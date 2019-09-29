@@ -36,7 +36,7 @@
                 <form action="/order" method="POST">
                     <div class="formItem">
                         <label for="name">Name</label><br>
-                        <input type="text" name="name">
+                        <input type="text" name="name" required>
                     </div>
                     <div class="formItem">
                         <label for="name">Size</label><br>
@@ -48,27 +48,27 @@
                         </select>
                     </div>
                     <div class="formItem">
-                        <label for="phoneNo">Phone No</label><br>
-                        <input type="text" name="phone" maxlength="10">
+                        <label for="phone">Phone No</label><br>
+                        <input type="text" name="phone" maxlength="10" required>
                     </div>
                     <div class="formItem">
                         <label for="email">Email</label><br>
-                        <input type="text" name="email">
+                        <input type="email" name="email" required>
                     </div>
                     <div class="formItem">
                         <label for="hostel">Hostel</label><br>
-                        <input type="text" name="hostel">
+                        <input type="text" name="hostel" required>
                     </div>
                     <div class="formItem">
                         <label for="roomNo">Room No</label><br>
-                        <input type="text" name="roomNo">
+                        <input type="text" name="roomNo" required>
                     </div>
                     <div class="formItem">
                         <label for="amount">Total</label><br>
-                        <input type="text" value="300" name="amount" readonly>
+                        <input type="text" value="300" name="amount" readonly required>
                     </div>
                     <div class="button">
-                        <button class="checkout" type="submit">Checkout</button>
+                        <button class="checkout" type="submit">Checkout</button required>
                     </div>
                 </form>
             </div>

@@ -4,8 +4,9 @@ const Schema = mongoose.Schema
 const productSchema = new Schema({
     name: String,
     price: Number,
-    imgFrom: String,
-    imgBack: String
+    imgFrot: String,
+    imgBack: String,
+    exclusive: Boolean
 }, {
     timestamps: true
 })

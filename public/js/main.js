@@ -284,3 +284,14 @@
 
 
 }());
+
+const productimg1 = document.querySelector('#pi1');
+const productimg2 = document.querySelector('#pi2');
+const productImage = document.querySelector('#pimg');
+
+productimg1.addEventListener("click", () => {
+	productImage.src = "/img/img1.jpg"
+})
+productimg2.addEventListener("click", () => {
+	productImage.src = "/img/img2.jpg"
+})

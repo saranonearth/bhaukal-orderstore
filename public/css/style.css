@@ -1382,6 +1382,20 @@ select {
     width: 100% !important;
   }
 
+  .product-img {
+    text-align: center;
+    width: 310px !important;
+  }
+
+  .img {
+    width: 80% !important;
+  }
+
+  .image-slider {
+    padding-bottom: 20px;
+
+  }
+
   .holder {
     flex-wrap: wrap;
   }
@@ -1435,6 +1449,18 @@ input {
   width: 300px;
 }
 
+.track-container {
+  width: 80%;
+
+}
+
+.slider-img {
+  display: flex;
+
+}
+
+
+
 .con {
   text-align: center;
   width: 80%;
@@ -1456,8 +1482,9 @@ label {
   margin: center;
 }
 
-.product img {
+.product-img {
   width: 600px;
+
 }
 
 .content {
@@ -1471,4 +1498,15 @@ label {
 button {
   margin-top: 10px;
   margin-bottom: 20px;
+}
+
+.im-1 {
+  width: 120px !important;
+  height: 120px !important;
+  padding-top: 10px;
+  padding-right: 10px;
+}
+
+.image-slider {
+  display: flex;
 }

@@ -4,10 +4,36 @@ const Product = require('../model/Product');
 const Order = require('../model/Order');
 module.exports = function (app) {
   //home page
-  app.get('/', async (req, res) => {
+  app.get('/', (req, res) => {
     res.render('index');
-  });
 
+  });
+  //post product 
+  app.post('/addproduct', async (req, res) => {
+    const {
+      name,
+      imgFront,
+      imgBack,
+      price,
+      exclusive
+    } = req.body
+    try {
+      const product = new Product({
+        name,
+        price,
+        imgFront,
+        imgBack,
+        exclusive
+      })
+
+      product.save();
+      return res.json({
+        msg: 'product added'
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  })
   //limted product page
   app.get('/exclusiveproduct', (req, res) => {
     res.render('limitedProduct');
@@ -19,12 +45,37 @@ module.exports = function (app) {
   });
 
   //order Details
-  app.get('/orderdetails/:id', (req, res) => {
+  app.get('/orderdetails', (req, res) => {
     res.render('orderDetails');
   });
+  //post track order id
 
+  app.post('/trackorder', async (req, res) => {
+    const {
+      orderid
+    } = req.body;
+
+    try {
+      const order = await Order.findOne({
+        orderId: orderid
+      }).populate('product')
+      console.log(order)
+      if (!order) {
+        return res.render('error', {
+          error: 'Order not found. Please check your Order Id.'
+        })
+      }
+      return res.render('orderDetails', order)
+    } catch (error) {
+      console.log(error)
+      return res.render('error', {
+        error: 'Something went wrong. Try again.'
+      })
+    }
+  })
   //order Details
   app.get('/checkorder', (req, res) => {
+    console.log(req.body)
     res.render('checkOrder');
   });
 
@@ -43,7 +94,9 @@ module.exports = function (app) {
       const product = await Product.find({})
       res.status(200).json(product)
     } catch (error) {
-      console.log(error)
+      return res.render('error', {
+        error: 'Something went wrong. Try again.'
+      })
     }
   })
   //payment gateway
@@ -74,7 +127,7 @@ module.exports = function (app) {
         orderId: orderID,
         custId: custID,
         productName: 'Engineering Things | Black Solid T-Shirt',
-        product: '5d9039571c9d440000bdac44',
+        product: '5db42397b4208c3e906777e2',
       })
       await newOrder.save();
 
@@ -114,7 +167,9 @@ module.exports = function (app) {
         res.end();
       });
     } catch (error) {
-      console.log(error)
+      return res.render('error', {
+        error: 'Something went wrong. Try again.'
+      })
     }
   })
 
@@ -163,10 +218,14 @@ module.exports = function (app) {
 
         return res.render('orderPlaced', order)
       } catch (error) {
-        console.log(error)
+        return res.render('error', {
+          error: 'Payment Failed. If any amount debited from your account will be refunded. Chill'
+        })
       }
     } else {
-      console.log('error')
+      return res.render('error', {
+        error: 'Something went wrong. Try again.'
+      })
     }
   })
 };

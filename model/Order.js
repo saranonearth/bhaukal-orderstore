@@ -21,6 +21,10 @@ const orderSchema = new Schema({
     productName: String,
     responseMessage: String,
     checkhash: String,
+    productStatus: {
+        type: String,
+        default: 'We working on your order. We will let you know soon'
+    },
     product: {
         type: Schema.Types.ObjectId,
         ref: 'product'

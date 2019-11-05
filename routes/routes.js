@@ -46,8 +46,11 @@ module.exports = function(app) {
 
   //track order
   app.post("/trackorder", async (req, res) => {
-    const { orderid } = req.body;
-    console.log(req.body);
+    if (req.body["g-recaptcha-response"] == "") {
+      return res.render("error", {
+        error: "Captcha verification failed. Try again"
+      });
+    }
     const secretKey = "6LdD5MAUAAAAAAlUmctLrbcrAVSPP5T67JVhgWXr";
     const verificationURL =
       "https://www.google.com/recaptcha/api/siteverify?secret=" +

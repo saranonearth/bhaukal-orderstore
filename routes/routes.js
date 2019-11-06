@@ -3,7 +3,7 @@ const shortid = require("shortid");
 const Product = require("../model/Product");
 const Order = require("../model/Order");
 const request = require("request");
-module.exports = function (app) {
+module.exports = function(app) {
   //home page
   app.get("/", (req, res) => {
     res.render("index");
@@ -11,13 +11,7 @@ module.exports = function (app) {
 
   //post product
   app.post("/addproduct", async (req, res) => {
-    const {
-      name,
-      imgFront,
-      imgBack,
-      price,
-      exclusive
-    } = req.body;
+    const { name, imgFront, imgBack, price, exclusive } = req.body;
     try {
       const product = new Product({
         name,
@@ -52,9 +46,7 @@ module.exports = function (app) {
 
   //track order
   app.post("/trackorder", async (req, res) => {
-    const {
-      orderid
-    } = req.body;
+    const { orderid } = req.body;
     if (req.body["g-recaptcha-response"] == "") {
       return res.render("error", {
         error: "Captcha verification failed. Try again"
@@ -69,7 +61,7 @@ module.exports = function (app) {
       req.body["g-recaptcha-response"] +
       "&remoteip=" +
       req.connection.remoteAddress;
-    request(verificationURL, async function (error, response, body) {
+    request(verificationURL, async function(error, response, body) {
       if (body.success !== undefined && !body.success) {
         return res.render("error", {
           error: "Captcha verification failed. Try again"
@@ -127,15 +119,7 @@ module.exports = function (app) {
   //POST checkout
   app.post("/order", async (req, res) => {
     console.log(req.body);
-    const {
-      email,
-      phone,
-      name,
-      amount,
-      hostel,
-      roomNo,
-      size
-    } = req.body;
+    const { email, phone, name, amount, hostel, roomNo, size } = req.body;
 
     try {
       const custID = name + shortid.generate();
@@ -149,7 +133,7 @@ module.exports = function (app) {
         size,
         orderId: orderID,
         custId: custID,
-        productName: "Engineering Things | Black Solid T-Shirt",
+        productName: "Engineering Things | Black Solid Hoodie",
         product: "5db42397b4208c3e906777e2"
       });
       await newOrder.save();
@@ -166,7 +150,7 @@ module.exports = function (app) {
       params["EMAIL"] = email;
       params["MOBILE_NO"] = phone;
 
-      checksum_lib.genchecksum(params, process.env.PKEY, async function (
+      checksum_lib.genchecksum(params, process.env.PKEY, async function(
         err,
         checksum
       ) {
@@ -192,10 +176,10 @@ module.exports = function (app) {
         });
         res.write(
           '<html><head><title>Checkout Page</title></head><body><center><h1>Please do not refresh this page...</h1></center><form method="post" action="' +
-          txn_url +
-          '" name="f1">' +
-          form_fields +
-          '</form><script type="text/javascript">document.f1.submit();</script></body></html>'
+            txn_url +
+            '" name="f1">' +
+            form_fields +
+            '</form><script type="text/javascript">document.f1.submit();</script></body></html>'
         );
         res.end();
       });
@@ -252,12 +236,14 @@ module.exports = function (app) {
         return res.render("orderPlaced", order);
       } catch (error) {
         return res.render("error", {
-          error: "Payment Failed. If any amount debited from your account will be refunded. Chill"
+          error:
+            "Transaction Failed. If any amount debited from your account will be refunded. Chill"
         });
       }
     } else {
       return res.render("error", {
-        error: "Something went wrong. Try again."
+        error:
+          "Transaction Failed. If any amount debited from your account will be refunded. Chill"
       });
     }
   });

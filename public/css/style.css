@@ -7,7 +7,6 @@ body {
   background: rgb(14, 13, 13);
 }
 
-
 #page {
   position: relative;
   overflow-x: hidden;
@@ -73,8 +72,6 @@ figure {
   font-weight: 400;
   margin: 0 0 20px 0;
 }
-
-
 
 .container-wrap {
   width: 1300px;
@@ -252,12 +249,12 @@ figure {
   box-shadow: 0px 14px 20px -9px rgba(0, 0, 0, 0.75);
 }
 
-.fh5co-nav ul li.active>a {
+.fh5co-nav ul li.active > a {
   color: rgb(19, 18, 18) !important;
   position: relative;
 }
 
-.fh5co-nav ul li.active>a:after {
+.fh5co-nav ul li.active > a:after {
   opacity: 1;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
@@ -436,7 +433,7 @@ figure {
   }
 }
 
-#fh5co-hero .flexslider .slider-text>.slider-text-inner {
+#fh5co-hero .flexslider .slider-text > .slider-text-inner {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -444,20 +441,20 @@ figure {
 }
 
 @media screen and (max-width: 768px) {
-  #fh5co-hero .flexslider .slider-text>.slider-text-inner {
+  #fh5co-hero .flexslider .slider-text > .slider-text-inner {
     text-align: left;
     margin-left: 10px;
   }
 }
 
-#fh5co-hero .flexslider .slider-text>.slider-text-inner h1,
-#fh5co-hero .flexslider .slider-text>.slider-text-inner h2 {
+#fh5co-hero .flexslider .slider-text > .slider-text-inner h1,
+#fh5co-hero .flexslider .slider-text > .slider-text-inner h2 {
   margin: 0;
   padding: 0;
   color: black;
 }
 
-#fh5co-hero .flexslider .slider-text>.slider-text-inner h1 {
+#fh5co-hero .flexslider .slider-text > .slider-text-inner h1 {
   margin-bottom: 10px;
   font-size: 40px;
   line-height: 1.3;
@@ -471,17 +468,17 @@ figure {
   box-decoration-break: clone;
 }
 
-#fh5co-hero .flexslider .slider-text>.slider-text-inner h1 a {
+#fh5co-hero .flexslider .slider-text > .slider-text-inner h1 a {
   color: #fff;
 }
 
 @media screen and (max-width: 768px) {
-  #fh5co-hero .flexslider .slider-text>.slider-text-inner h1 {
+  #fh5co-hero .flexslider .slider-text > .slider-text-inner h1 {
     font-size: 24px;
   }
 }
 
-#fh5co-hero .flexslider .slider-text>.slider-text-inner h2 {
+#fh5co-hero .flexslider .slider-text > .slider-text-inner h2 {
   font-size: 18px;
   line-height: 1.5;
   margin-bottom: 10px;
@@ -490,7 +487,7 @@ figure {
   font-family: "Open Sans", arial, sans-serif;
 }
 
-#fh5co-hero .flexslider .slider-text>.slider-text-inner h2 a {
+#fh5co-hero .flexslider .slider-text > .slider-text-inner h2 a {
   color: rgba(255, 255, 255, 0.8);
   border-bottom: 1px solid rgba(255, 255, 255, 0.7);
 }
@@ -503,7 +500,6 @@ figure {
 }
 
 @media screen and (max-width: 768px) {
-
   #fh5co-contact,
   #fh5co-work,
   #fh5co-footer {
@@ -545,7 +541,7 @@ figure {
   bottom: 0;
   left: 0;
   right: 0;
-  content: '';
+  content: "";
   opacity: 0;
   background: rgba(0, 0, 0, 0.2);
   z-index: 0;
@@ -649,7 +645,7 @@ figure {
 
 .contact-info li i {
   position: absolute;
-  top: .3em;
+  top: 0.3em;
   left: 0;
   font-size: 18px;
   color: rgb(19, 18, 18);
@@ -684,21 +680,18 @@ input[type="text"] {
   height: 50px;
   background: rgb(34, 34, 34);
   border: none;
-
 }
 
 input[type="email"] {
   height: 50px;
   background: rgb(34, 34, 34);
   border: none;
-
 }
 
 select {
   height: 50px;
   background: rgb(34, 34, 34);
   border: none;
-
 }
 
 .form-group {
@@ -871,20 +864,20 @@ select {
   font-size: 18px;
 }
 
-#fh5co-offcanvas ul li>ul {
+#fh5co-offcanvas ul li > ul {
   padding-left: 20px;
   display: none;
 }
 
-#fh5co-offcanvas ul li.offcanvas-has-dropdown>a {
+#fh5co-offcanvas ul li.offcanvas-has-dropdown > a {
   display: block;
   position: relative;
 }
 
-#fh5co-offcanvas ul li.offcanvas-has-dropdown>a:after {
+#fh5co-offcanvas ul li.offcanvas-has-dropdown > a:after {
   position: absolute;
   right: 0px;
-  font-family: 'icomoon';
+  font-family: "icomoon";
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -910,7 +903,7 @@ select {
   transform: rotate(-180deg);
 }
 
-#fh5co-offcanvas ul li.active>a {
+#fh5co-offcanvas ul li.active > a {
   color: rgb(19, 18, 18);
 }
 
@@ -983,31 +976,31 @@ select {
   width: 25px;
   height: 2px;
   color: #252525;
-  font: bold 14px/.4 Helvetica;
+  font: bold 14px/0.4 Helvetica;
   text-transform: uppercase;
   text-indent: -55px;
   background: #252525;
-  transition: all .2s ease-out;
+  transition: all 0.2s ease-out;
 }
 
 .fh5co-nav-toggle i::before,
 .fh5co-nav-toggle i::after {
-  content: '';
+  content: "";
   width: 25px;
   height: 2px;
   background: #252525;
   position: absolute;
   left: 0;
-  transition: all .2s ease-out;
+  transition: all 0.2s ease-out;
 }
 
-.fh5co-nav-toggle.fh5co-nav-white>i {
+.fh5co-nav-toggle.fh5co-nav-white > i {
   color: #fff;
   background: #fff;
 }
 
-.fh5co-nav-toggle.fh5co-nav-white>i::before,
-.fh5co-nav-toggle.fh5co-nav-white>i::after {
+.fh5co-nav-toggle.fh5co-nav-white > i::before,
+.fh5co-nav-toggle.fh5co-nav-white > i::after {
   background: #fff;
 }
 
@@ -1374,8 +1367,7 @@ select {
   width: 100%;
 }
 
-
-@media (max-width:800px) {
+@media (max-width: 800px) {
   .slider-text-inner {
     margin-bottom: 100px !important;
     margin-left: 10px !important;
@@ -1393,7 +1385,6 @@ select {
 
   .image-slider {
     padding-bottom: 20px;
-
   }
 
   .holder {
@@ -1402,14 +1393,14 @@ select {
 }
 
 .hero-holder {
-  background: url('/img/img1.jpg');
+  background: url("https://firebasestorage.googleapis.com/v0/b/lateral-avatar-229210.appspot.com/o/IMG1.jpg?alt=media&token=01f8cff9-9ba9-42c7-abb6-a6ea819399d1");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
 }
 
 .hero-holder:hover {
-  background: url('/img/img2.jpg');
+  background: url("https://firebasestorage.googleapis.com/v0/b/lateral-avatar-229210.appspot.com/o/IMG2.jpg?alt=media&token=dc386106-ceb7-4440-b734-420b1192d6c5");
 }
 
 .buyButton {
@@ -1428,8 +1419,6 @@ select {
 
 .holder {
   display: flex !important;
-
-
 }
 
 input {
@@ -1451,15 +1440,11 @@ input {
 
 .track-container {
   width: 80%;
-
 }
 
 .slider-img {
   display: flex;
-
 }
-
-
 
 .con {
   text-align: center;
@@ -1478,13 +1463,11 @@ label {
 }
 
 .product {
-
   margin: center;
 }
 
 .product-img {
   width: 600px;
-
 }
 
 .content {

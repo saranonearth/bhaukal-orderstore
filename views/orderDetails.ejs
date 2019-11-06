@@ -40,7 +40,7 @@
         <p>T-Shirt: <%= product.name %></p>
         <p>Size: <%= size %></p>
         <p>Amount: Rs.<%= amount %></p>
-        <% if(status="TXN_FAILURE") { %>
+        <% if(status=="TXN_FAILURE") { %>
         <p>Status: Your order failed</p>
         <% } else { %>
         <p>Status: <%= productStatus %></p>

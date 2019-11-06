@@ -46,12 +46,14 @@ module.exports = function(app) {
 
   //track order
   app.post("/trackorder", async (req, res) => {
+    const { orderid } = req.body;
     if (req.body["g-recaptcha-response"] == "") {
       return res.render("error", {
         error: "Captcha verification failed. Try again"
       });
     }
-    const secretKey = "6LdD5MAUAAAAAAlUmctLrbcrAVSPP5T67JVhgWXr";
+    const secretKey = process.env.CPSECKEY;
+
     const verificationURL =
       "https://www.google.com/recaptcha/api/siteverify?secret=" +
       secretKey +
@@ -69,7 +71,6 @@ module.exports = function(app) {
         const order = await Order.findOne({
           orderId: orderid
         }).populate("product");
-
         if (!order) {
           return res.render("error", {
             error: "Order not found. Please check your Order Id."
@@ -139,7 +140,7 @@ module.exports = function(app) {
 
       var params = {};
       params["MID"] = process.env.MID;
-      params["WEBSITE"] = "WEBSTAGING";
+      params["WEBSITE"] = "DEFAULT";
       params["CHANNEL_ID"] = "WEB";
       params["INDUSTRY_TYPE_ID"] = "Retail";
       params["ORDER_ID"] = orderID + new Date().getTime();
@@ -155,8 +156,7 @@ module.exports = function(app) {
       ) {
         if (err) console.log("paytm", err);
 
-        var txn_url =
-          "https://securegw-stage.paytm.in/theia/processTransaction";
+        var txn_url = "https://securegw.paytm.in/order/process";
 
         // var txn_url = "https://securegw.paytm.in/theia/processTransaction"; // for production
 

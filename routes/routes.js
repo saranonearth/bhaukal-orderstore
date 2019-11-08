@@ -8,7 +8,9 @@ module.exports = function(app) {
   app.get("/", (req, res) => {
     res.render("index");
   });
-
+  app.get("/aboutus", (req, res) => {
+    res.render("about");
+  });
   //post product
   app.post("/addproduct", async (req, res) => {
     const { name, imgFront, imgBack, price, exclusive } = req.body;
@@ -145,7 +147,7 @@ module.exports = function(app) {
       params["INDUSTRY_TYPE_ID"] = "Retail";
       params["ORDER_ID"] = orderID + new Date().getTime();
       params["CUST_ID"] = custID;
-      params["TXN_AMOUNT"] = "1";
+      params["TXN_AMOUNT"] = "250";
       params["CALLBACK_URL"] = process.env.CALLBACKURL;
       params["EMAIL"] = email;
       params["MOBILE_NO"] = phone;

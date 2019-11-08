@@ -3,7 +3,7 @@ const middlewares = require("./middleware/middleware");
 const routes = require("./routes/routes");
 const app = express();
 require("dotenv").config();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 const path = require("path");
 const db = require("./DB/db");
 

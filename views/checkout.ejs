@@ -47,8 +47,13 @@
                             <option value="M">M</option>
                             <option value="L">L</option>
                             <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
+                            <option value="XXXL">XXXL</option>
                         </select>
+
+                        <p> <strong>Recommendation:</strong> This product runs a size smaller. If you usually buy M go for L.</p>
                     </div>
+
                     <div class="formItem">
                         <label for="phone">Phone No</label><br>
                         <input type="text" name="phone" maxlength="10" required>
@@ -65,6 +70,7 @@
                         <label for="roomNo">Room No</label><br>
                         <input type="text" name="roomNo" required>
                     </div>
+                    <input name="channelid" type="hidden" value="WAP" id="channelid">
                     <div class="formItem">
                         <label for="amount">Total</label><br>
                         <input type="text" value="250" name="amount" readonly required>
@@ -77,5 +83,5 @@
 
 
 
-
+            <script src="/js/screensize.js"></script>
             <%- include('./Includes/bottom.ejs') %>

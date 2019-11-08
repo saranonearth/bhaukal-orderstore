@@ -333,12 +333,25 @@ figure {
 
 #fh5co-hero {
   min-height: 800px;
-  background: #fff url(../images/loader.gif) no-repeat center center;
   width: 100%;
   float: left;
   margin-bottom: 20px;
 }
+.timer {
+  color: white;
+  font-size: 2em;
+}
 
+.nom {
+  margin-bottom: 0 !important;
+  font-size: 1.6em;
+}
+
+.dbox {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
 @media screen and (max-width: 768px) {
   #fh5co-hero {
     min-height: 500px;

@@ -40,7 +40,10 @@ module.exports = function(app) {
   app.get("/orderplaced", (req, res) => {
     res.render("orderPlaced");
   });
-
+  //size chart
+  app.get("/sizechart", (req, res) => {
+    res.render("sizechart");
+  });
   //order Details
   app.get("/orderdetails", (req, res) => {
     res.render("orderDetails");

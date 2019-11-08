@@ -124,7 +124,16 @@ module.exports = function(app) {
   //POST checkout
   app.post("/order", async (req, res) => {
     console.log(req.body);
-    const { email, phone, name, amount, hostel, roomNo, size } = req.body;
+    const {
+      email,
+      phone,
+      channelid,
+      name,
+      amount,
+      hostel,
+      roomNo,
+      size
+    } = req.body;
 
     try {
       const custID = name + shortid.generate();
@@ -146,7 +155,7 @@ module.exports = function(app) {
       var params = {};
       params["MID"] = process.env.MID;
       params["WEBSITE"] = "DEFAULT";
-      params["CHANNEL_ID"] = "WEB";
+      params["CHANNEL_ID"] = channelid;
       params["INDUSTRY_TYPE_ID"] = "Retail";
       params["ORDER_ID"] = orderID + new Date().getTime();
       params["CUST_ID"] = custID;

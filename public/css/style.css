@@ -270,7 +270,9 @@ figure {
 .fh5co-video {
   overflow: hidden;
 }
-
+.dm {
+  padding-left: 20px;
+}
 @media screen and (max-width: 992px) {
   .fh5co-video {
     height: 450px;

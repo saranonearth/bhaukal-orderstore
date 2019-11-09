@@ -270,7 +270,7 @@ productimg1.addEventListener("click", () => {
   productImage.src = "/img/img1.jpg";
 });
 productimg2.addEventListener("click", () => {
-  productImage.src = "/img/img2.jpg";
+  productImage.src = "/img/back2.jpg";
 });
 
 const channelid = document.querySelector("#channelid");
